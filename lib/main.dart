@@ -1,6 +1,5 @@
 import 'package:chatsy/constants/constants.dart';
 import 'package:chatsy/screens/auth/Login/login.dart';
-import 'package:chatsy/screens/splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

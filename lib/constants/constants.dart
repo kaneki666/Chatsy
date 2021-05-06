@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 
 const primary = Color(0xFF2f23a4);
-const primaryLight = Color(0xFF6939aff);
+const secondary = Color(0xFFF4F5FA);
+const primaryLight = Color(0xFF7a70e0);
 const textWhite = Color(0xFFFFFFFF);
 const textBlack = Color(0xFF000000);
 const textGreen = Color(0xFF08C18A);
+const textSent = Color(0xFFAAA3F1);
+const textTime = Color(0xFFDA2B2B);
 const textOrangish = Color(0xFFFBD285);
 const placeholderText = Color(0xFFAAAAAA);
 const inputBg = Color(0xFFEBEBEB);
+const bgWhite = Color(0xFFFFFFFF);
+const bgBlack = Color(0xFF000000);
+const buttonBg = Color(0xFF4AA3C6);
+const iconColor = Color(0xFF9890e7);
+const iconSeen = Color(0xFF08CC92);
+const transparentColor = Color(0xFFe8eeee);
+const textFieldBorder = Color(0xFFB5B8C2);
