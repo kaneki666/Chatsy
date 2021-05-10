@@ -19,9 +19,10 @@ class MyApp extends StatelessWidget {
               GoogleFonts.dmSansTextTheme().apply(displayColor: textWhite),
           visualDensity: VisualDensity.adaptivePlatformDensity,
           appBarTheme: AppBarTheme(
-              color: Colors.transparent,
-              elevation: 0,
-              brightness: Brightness.light)),
+            color: Colors.transparent,
+            elevation: 0,
+            brightness: Brightness.light,
+          )),
       home: Login(),
     );
   }

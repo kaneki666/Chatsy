@@ -1,6 +1,5 @@
 import 'package:chatsy/constants/constants.dart';
 import 'package:chatsy/screens/home/chats/componnets/friends_row.dart';
-import 'package:chatsy/screens/home/chats/models/users.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -33,7 +32,7 @@ class TopViewChats extends StatelessWidget {
           ),
           FriendsRow(size: size),
           SizedBox(
-            height: 25,
+            height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
