@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:chatsy/constants/constants.dart';
 import 'package:chatsy/screens/auth/Login/login.dart';
 import 'package:flutter/material.dart';
