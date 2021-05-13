@@ -13,12 +13,12 @@ class ChatsBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: size.height * 0.25,
+            height: size.height * 0.3,
             width: size.width,
             child: TopViewChats(size: size),
           ),
           SizedBox(
-            height: size.height * 0.75,
+            height: size.height * 0.7,
             width: size.width,
             child: Container(
               decoration: BoxDecoration(
@@ -28,7 +28,7 @@ class ChatsBody extends StatelessWidget {
                     topRight: Radius.circular(50)),
               ),
               child: Padding(
-                padding: EdgeInsets.only(top: size.height * 0.038),
+                padding: EdgeInsets.only(top: size.height * 0.05),
                 child: ListView.builder(
                   padding: EdgeInsets.zero,
                   itemCount: usersData.length,

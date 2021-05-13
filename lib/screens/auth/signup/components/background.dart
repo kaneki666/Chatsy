@@ -22,7 +22,7 @@ class SignupBackground extends StatelessWidget {
           Positioned(
             top: 0,
             child: Container(
-              height: size.height * 0.3,
+              height: size.height * 0.4,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -33,8 +33,8 @@ class SignupBackground extends StatelessWidget {
                     tag: 'image-logo',
                     child: Image.asset(
                       'assets/icons/logo.png',
-                      height: size.height * 0.16,
-                      width: size.height * 0.16,
+                      height: size.height * 0.25,
+                      width: size.height * 0.25,
                     ),
                   ),
                   Padding(
@@ -44,7 +44,7 @@ class SignupBackground extends StatelessWidget {
                       style: GoogleFonts.blackHanSans(
                         fontStyle: FontStyle.normal,
                         color: textWhite,
-                        fontSize: size.height * 0.05,
+                        fontSize: size.height * 0.07,
                       ),
                     ),
                   )
@@ -53,9 +53,9 @@ class SignupBackground extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: size.height * 0.3,
+            top: size.height * 0.4,
             child: Container(
-              height: size.height * 0.7,
+              height: size.height * 0.6,
               width: size.width,
               decoration: BoxDecoration(
                 color: bgWhite,

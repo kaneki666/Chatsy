@@ -19,3 +19,5 @@ const iconSeen = Color(0xFF08CC92);
 const transparentColor = Color(0xFFe8eeee);
 const textFieldBorder = Color(0xFFB5B8C2);
 const chatContainerBg = Color(0xFFf6f6f6);
+const bgLight = Color(0xFFFC727B);
+const bglDark = Color(0xFFF468A0);

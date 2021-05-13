@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "49701980499",
+    "project_id": "chatsy-ccca0",
+    "storage_bucket": "chatsy-ccca0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49701980499:android:9ce002a973d4f23d3579a6",
+        "android_client_info": {
+          "package_name": "com.example.chatsy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49701980499-c941fv57b0umtmdui3fjpvqfmeoo1hm3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chatsy",
+            "certificate_hash": "74c5992e487cb7e04a7ec6699a6370908dfa05a9"
+          }
+        },
+        {
+          "client_id": "49701980499-qh3sol242p7sk3jqig3b1ttgpu9oj43t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chatsy",
+            "certificate_hash": "524a6327f002c69ab1ad2aa8448eb63ad6c8de4d"
+          }
+        },
+        {
+          "client_id": "49701980499-7v46uhcenapg0ai8qve3fkfb3682c5na.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPuui_FX62Dk6oRDB_8cIbGtPuPZ8aypk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49701980499-7v46uhcenapg0ai8qve3fkfb3682c5na.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

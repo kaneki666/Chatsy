@@ -6,11 +6,12 @@ class SignupInputfield extends StatelessWidget {
     Key? key,
     required this.hintText,
     required this.icon,
+    required this.controller,
   }) : super(key: key);
 
   final String hintText;
   final IconData icon;
-
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -20,6 +21,7 @@ class SignupInputfield extends StatelessWidget {
         height: size.height > 800 ? 60 : 55,
         width: size.width > 500 ? 300 : size.width - 100,
         child: TextField(
+          controller: controller,
           decoration: InputDecoration(
               fillColor: Colors.white,
               hintStyle: TextStyle(
@@ -32,7 +34,7 @@ class SignupInputfield extends StatelessWidget {
                 child: Icon(
                   icon,
                   size: 22,
-                  color: iconColor,
+                  color: primary,
                 ),
               ),
               border: OutlineInputBorder(

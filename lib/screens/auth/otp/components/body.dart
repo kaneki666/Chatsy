@@ -5,9 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OtpBody extends StatelessWidget {
+  const OtpBody({
+    Key? key,
+    required this.phoneNumber,
+  }) : super(key: key);
+
+  final String phoneNumber;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    TextEditingController code1 = TextEditingController();
+    TextEditingController code2 = TextEditingController();
+    TextEditingController code3 = TextEditingController();
+    TextEditingController code4 = TextEditingController();
+    TextEditingController code5 = TextEditingController();
+    TextEditingController code6 = TextEditingController();
     return Container(
       height: size.height,
       width: double.infinity,
@@ -38,10 +51,30 @@ class OtpBody extends StatelessWidget {
             top: size.height * 0.65,
             child: Row(
               children: [
-                OtpField(),
-                OtpField(),
-                OtpField(),
-                OtpField(),
+                OtpField(
+                  lastnode: false,
+                  controller: code1,
+                ),
+                OtpField(
+                  lastnode: false,
+                  controller: code2,
+                ),
+                OtpField(
+                  lastnode: false,
+                  controller: code3,
+                ),
+                OtpField(
+                  lastnode: false,
+                  controller: code4,
+                ),
+                OtpField(
+                  lastnode: false,
+                  controller: code5,
+                ),
+                OtpField(
+                  lastnode: true,
+                  controller: code6,
+                ),
               ],
             ),
           ),

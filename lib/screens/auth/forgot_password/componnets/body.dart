@@ -32,14 +32,14 @@ class ForgetBody extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Otp();
-                    },
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) {
+                //       return Otp();
+                //     },
+                //   ),
+                // );
               },
               child: Padding(
                 padding: const EdgeInsets.only(top: 35),
