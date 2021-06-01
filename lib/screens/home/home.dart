@@ -1,4 +1,5 @@
 import 'package:chatsy/constants/constants.dart';
+import 'package:chatsy/screens/home/chats/index.dart';
 import 'package:chatsy/screens/home/home_screen/componnets/body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -25,10 +26,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       'Index 2: School',
       style: optionStyle,
     ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    Chats(),
     Text(
       'Index 2: School',
       style: optionStyle,
@@ -45,14 +43,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     Icons.home_outlined,
     Icons.search,
     Icons.add_box_outlined,
-    Icons.favorite_outline_sharp,
+    Icons.chat_bubble_outline_rounded,
     Icons.person_outline_sharp
   ];
   List<IconData> dataa = [
     Icons.home,
     Icons.search,
     Icons.add_box_outlined,
-    Icons.favorite_outline_sharp,
+    Icons.chat_bubble_rounded,
     Icons.person_outline_sharp
   ];
   ScrollController _scroller = ScrollController();
@@ -140,6 +138,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
+    double tabPadding = 10;
+    double tabItemWidth = (size.width - 20) / 5 - tabPadding;
+    print("$tabItemWidth, $tabPadding");
     if (upDirection == false) {
       setState(() {
         height1 = 1;
@@ -202,10 +204,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               width: double.infinity,
                               child: ListView.builder(
                                 itemCount: data.length,
-                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                padding: EdgeInsets.symmetric(horizontal: 0),
                                 itemBuilder: (ctx, i) => Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
+                                  padding: EdgeInsets.only(
+                                    left: tabPadding,
+                                  ),
                                   child: GestureDetector(
                                     onTap: () {
                                       setState(() {
@@ -214,18 +217,19 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     },
                                     child: i == 2
                                         ? SizedBox(
-                                            width: 40,
+                                            width: tabItemWidth,
                                           )
                                         : AnimatedContainer(
                                             duration:
                                                 Duration(milliseconds: 400),
-                                            width: 40,
+                                            width: tabItemWidth,
                                             decoration: BoxDecoration(
                                               border: i == _selectedIndex
                                                   ? Border(
                                                       top: BorderSide(
-                                                          width: 3.0,
-                                                          color: Colors.black),
+                                                        width: 3.0,
+                                                        color: textDark,
+                                                      ),
                                                     )
                                                   : null,
                                             ),

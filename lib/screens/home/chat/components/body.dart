@@ -15,12 +15,21 @@ class ChatBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      color: primary,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          stops: [0.0, 1.0],
+          begin: FractionalOffset.topCenter,
+          end: FractionalOffset.bottomCenter,
+          tileMode: TileMode.repeated,
+          colors: [bgHome1, bgHome2], // red to yellow
+          // repeats the gradient over the canvas
+        ),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           SizedBox(
-            height: size.height * 0.15,
+            height: size.height * 0.1,
             width: size.width,
             child: ChatTopContainer(size: size, userData: userData),
           ),
@@ -28,12 +37,6 @@ class ChatBody extends StatelessWidget {
             height: size.height * 0.70,
             width: size.width,
             child: Container(
-              decoration: BoxDecoration(
-                color: textWhite,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(50),
-                ),
-              ),
               child: Padding(
                   padding: const EdgeInsets.only(
                     top: 20,
@@ -94,22 +97,21 @@ class ChatBody extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: size.height * .15,
+            height: size.height * .2,
             width: double.infinity,
             child: Container(
-              color: primary,
               child: Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 5, bottom: 5),
+                        left: 5, right: 5, top: 5, bottom: 5),
                     child: Row(
                       children: [
                         ClipOval(
                           child: Container(
                             color: textWhite,
-                            height: 40,
-                            width: 40,
+                            height: 35,
+                            width: 35,
                             child: Icon(
                               Icons.mic_outlined,
                               color: textBlack,
@@ -146,13 +148,13 @@ class ChatBody extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: 15,
+                          width: 10,
                         ),
                         ClipOval(
                           child: Container(
                             color: textWhite,
-                            height: 40,
-                            width: 40,
+                            height: 35,
+                            width: 35,
                             child: Icon(
                               Icons.send,
                               color: textBlack,
@@ -165,15 +167,15 @@ class ChatBody extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 0, bottom: 0),
+                        left: 10, right: 10, top: 8, bottom: 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         ClipOval(
                           child: Container(
                             color: Color(0xFF0169ff),
-                            height: 40,
-                            width: 40,
+                            height: 35,
+                            width: 35,
                             child: Icon(
                               Icons.image,
                               color: textWhite,
@@ -184,8 +186,8 @@ class ChatBody extends StatelessWidget {
                         ClipOval(
                           child: Container(
                             color: Color(0xFFab1df7),
-                            height: 40,
-                            width: 40,
+                            height: 35,
+                            width: 35,
                             child: Icon(
                               Icons.file_upload,
                               color: textWhite,
@@ -196,8 +198,8 @@ class ChatBody extends StatelessWidget {
                         ClipOval(
                           child: Container(
                             color: Color(0xFFfe5001),
-                            height: 40,
-                            width: 40,
+                            height: 35,
+                            width: 35,
                             child: Icon(
                               Icons.contact_phone,
                               color: textWhite,
@@ -208,8 +210,8 @@ class ChatBody extends StatelessWidget {
                         ClipOval(
                           child: Container(
                             color: Color(0xFFff00a3),
-                            height: 40,
-                            width: 40,
+                            height: 35,
+                            width: 35,
                             child: Icon(
                               Icons.location_on,
                               color: textWhite,
@@ -261,7 +263,7 @@ class MessageContainerReciever extends StatelessWidget {
             constraints: BoxConstraints(
               minHeight: 35,
               minWidth: 60,
-              maxWidth: 240,
+              maxWidth: 235,
             ),
             child: DecoratedBox(
               decoration: BoxDecoration(
@@ -319,7 +321,7 @@ class MessageContainerSender extends StatelessWidget {
             constraints: BoxConstraints(
               minHeight: 35,
               minWidth: 60,
-              maxWidth: 240,
+              maxWidth: 235,
             ),
             child: DecoratedBox(
               decoration: BoxDecoration(

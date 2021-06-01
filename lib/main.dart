@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
       });
     } catch (e) {
       setState(() {
+        print(e);
         _error = true;
       });
     }
@@ -40,9 +41,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    if (_error) {
-      return Text("error");
-    }
+    // if (_error) {
+    //   return Directionality(
+    //     child: Text("$_error"),
+    //     textDirection: TextDirection.rtl,
+    //   );
+    // }
 
     return MaterialApp(
         title: 'Chatsy',

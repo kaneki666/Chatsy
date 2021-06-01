@@ -16,7 +16,8 @@ class ChatContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
+    double itemHeight = size.height * 0.18;
+    double imageSize = size.width * 0.2;
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -28,93 +29,102 @@ class ChatContainer extends StatelessWidget {
       },
       child: Padding(
         padding: EdgeInsets.all(2.5),
-        child: Container(
-          height: 120,
-          width: size.width - 15,
-          decoration: BoxDecoration(
-            color: textWhite,
-            borderRadius: BorderRadius.circular(16.0),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: 10, left: 5, bottom: 10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(40),
-                  child: Image.asset(
-                    "${userData.image}",
-                    height: 80,
-                    width: 80,
+        child: Column(
+          children: [
+            Container(
+              height: itemHeight,
+              width: size.width - 15,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 10, left: 5, bottom: 10),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(40),
+                      child: Image.asset(
+                        "${userData.image}",
+                        height: imageSize,
+                        width: imageSize,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              SizedBox(
-                width: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
-                child: SizedBox(
-                  width: size.width * 0.50,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Text(
-                          "${userData.username}",
-                          style: GoogleFonts.blackHanSans(
-                              fontSize: 18, letterSpacing: 1.2),
-                        ),
-                      ),
-                      Text(
-                        "${userData.message}",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                      userData.messagesent == true
-                          ? Padding(
-                              padding: const EdgeInsets.only(bottom: 10.0),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.remove_red_eye_outlined,
-                                    size: 20,
-                                    color: iconSeen,
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: SizedBox(
+                      width: size.width * 0.6,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Text(
+                              "${userData.username}",
+                              style: TextStyle(
+                                  fontStyle: FontStyle.normal,
+                                  color: textDark,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                          Text(
+                            "${userData.message}",
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                          userData.messagesent == true
+                              ? Padding(
+                                  padding: const EdgeInsets.only(top: 5.0),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.remove_red_eye_outlined,
+                                        size: 20,
+                                        color: iconSeen,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        '2 mint ago',
+                                        style: TextStyle(
+                                            fontSize: 12, color: iconSeen),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.only(bottom: 5.0),
+                                  child: Text(
                                     '2 mint ago',
                                     style: TextStyle(
-                                        fontSize: 12, color: iconSeen),
+                                        fontSize: 12, color: textSent),
                                   ),
-                                ],
-                              ),
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.only(bottom: 5.0),
-                              child: Text(
-                                '2 mint ago',
-                                style: TextStyle(fontSize: 12, color: textSent),
-                              ),
-                            ),
-                    ],
+                                ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    width: 0,
+                  ),
+                ],
               ),
-              SizedBox(
-                width: 15,
-              ),
-              Text(
-                '${userData.timesent}',
-                style: TextStyle(fontSize: 12, color: textTime),
-              ),
-            ],
-          ),
+            ),
+            Divider(
+              height: 1,
+              thickness: 1,
+              indent: 10,
+              endIndent: 10,
+            ),
+          ],
         ),
       ),
     );

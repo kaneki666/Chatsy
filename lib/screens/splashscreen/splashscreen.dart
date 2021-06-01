@@ -131,8 +131,8 @@ class _SplashscreenState extends State<Splashscreen>
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -216,7 +216,7 @@ class _SplashscreenState extends State<Splashscreen>
                   ),
                 ),
                 Positioned(
-                  top: size.height * 0.9,
+                  top: size.height * 0.92,
                   child: GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(_createRoute());
@@ -227,7 +227,7 @@ class _SplashscreenState extends State<Splashscreen>
                         "I ALREADY HAVE AN ACCOUNNT",
                         style: GoogleFonts.blackHanSans(
                           color: textWhite.withOpacity(0.6),
-                          fontSize: 20,
+                          fontSize: size.width * 0.05,
                         ),
                       ),
                     ),

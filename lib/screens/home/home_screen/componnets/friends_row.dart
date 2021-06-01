@@ -26,7 +26,7 @@ class FriendsRow extends StatelessWidget {
             child: Icon(
               Icons.search_outlined,
               size: 30,
-              color: textWhite,
+              color: textDark,
             ),
           ),
         ),

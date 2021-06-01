@@ -17,49 +17,34 @@ class ChatTopContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: size.height * 0.06),
+      padding: EdgeInsets.only(top: size.height * 0.04),
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Positioned(
-            top: 0,
-            left: 20,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Icon(
-                Icons.arrow_back_ios,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  color: iconColor,
+                  size: 20,
+                ),
+              ),
+              Text(
+                "${userData.username}",
+                style: TextStyle(
+                    color: textDark, fontSize: 18, letterSpacing: 1.2),
+              ),
+              Icon(
+                Icons.info_outline_rounded,
                 color: iconColor,
                 size: 20,
               ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                "${userData.username}",
-                style: GoogleFonts.blackHanSans(
-                    color: textWhite, fontSize: 20, letterSpacing: 1.2),
-              ),
-              ClipOval(
-                child: Image.asset(
-                  '${userData.image}',
-                  height: 50,
-                  width: 50,
-                ),
-              ),
             ],
-          ),
-          Positioned(
-            top: 0,
-            right: 20,
-            child: Icon(
-              Icons.info_outline_rounded,
-              color: iconColor,
-              size: 20,
-            ),
           ),
         ],
       ),
