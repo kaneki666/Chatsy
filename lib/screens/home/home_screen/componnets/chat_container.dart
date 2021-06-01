@@ -1,6 +1,7 @@
 import 'package:chatsy/constants/constants.dart';
 import 'package:chatsy/screens/home/chat/chat.dart';
-import 'package:chatsy/screens/home/chats/models/users.dart';
+import 'package:chatsy/screens/home/home_screen/models/users.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

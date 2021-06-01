@@ -20,18 +20,23 @@ class OtpField extends StatelessWidget {
         width: itemSize,
         height: itemSize,
         child: TextField(
+          style: TextStyle(
+            color: textWhite,
+          ),
           keyboardType: TextInputType.number,
           maxLength: 1,
           decoration: InputDecoration(
             counterText: '',
             filled: true,
-            fillColor: Colors.white,
+            fillColor: inputBg.withOpacity(0.35),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: primaryLight, width: 2.0),
-              borderRadius: BorderRadius.circular(10),
+            focusedBorder: InputBorder.none,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderSide:
+                  BorderSide(color: inputBg.withOpacity(0.3), width: 0.0),
             ),
           ),
           textAlign: TextAlign.center,

@@ -4,7 +4,6 @@ import 'package:chatsy/screens/auth/otp/components/otp_textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sms_autofill/sms_autofill.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -21,11 +20,11 @@ class OtpBody extends StatefulWidget {
 }
 
 class _OtpBodyState extends State<OtpBody> {
-  @override
-  void initState() {
-    super.initState();
-    _listenOtp();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _listenOtp();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,6 @@ class _OtpBodyState extends State<OtpBody> {
         phoneNumber: "+88${widget.phoneNumber}",
         verificationCompleted: (PhoneAuthCredential credential) async {
           await auth.signInWithCredential(credential);
-          print('verified');
         },
         verificationFailed: (FirebaseAuthException e) async {
           Future<void> _showMyDialog() async {
@@ -75,27 +73,10 @@ class _OtpBodyState extends State<OtpBody> {
 
     otpVerify();
 
-    return Container(
-      height: size.height,
-      width: double.infinity,
-      color: textWhite,
-      child: PinFieldAutoFill(
-        decoration: UnderlineDecoration(
-          textStyle: TextStyle(fontSize: 20, color: Colors.black),
-          colorBuilder: FixedColorBuilder(Colors.black.withOpacity(0.3)),
-        ),
-        codeLength: 6,
-        onCodeSubmitted: (code) {},
-        onCodeChanged: (code) {
-          if (code!.length == 6) {
-            FocusScope.of(context).requestFocus(FocusNode());
-          }
-        },
-      ),
-    );
+    return Container();
   }
 }
 
-void _listenOtp() async {
-  await SmsAutoFill().listenForCode;
-}
+// void _listenOtp() async {
+//   await SmsAutoFill().listenForCode;
+// }

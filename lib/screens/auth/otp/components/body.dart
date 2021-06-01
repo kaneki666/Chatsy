@@ -1,3 +1,4 @@
+import 'package:chatsy/components/button_primary.dart';
 import 'package:chatsy/constants/constants.dart';
 import 'package:chatsy/screens/auth/Login/login.dart';
 import 'package:chatsy/screens/auth/otp/components/otp_textfield.dart';
@@ -24,31 +25,51 @@ class OtpBody extends StatelessWidget {
     return Container(
       height: size.height,
       width: double.infinity,
-      color: primary,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          stops: [0.0, 1.0],
+          begin: FractionalOffset.topCenter,
+          end: FractionalOffset.bottomCenter,
+          tileMode: TileMode.repeated,
+          colors: [bgLight, bglDark], // red to yellow
+          // repeats the gradient over the canvas
+        ),
+      ),
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
           Positioned(
-            top: size.height * 0.15,
-            child: Image.asset(
-              "assets/icons/otp.png",
-              height: size.width / 1.5,
-              width: size.width / 1.5,
+            top: size.height * 0.06,
+            child: Text(
+              "Code is sent to 01764225218",
+              style: GoogleFonts.blackHanSans(
+                fontStyle: FontStyle.normal,
+                color: textWhite.withOpacity(0.5),
+                fontSize: 16,
+              ),
             ),
           ),
           Positioned(
-            top: size.height * 0.55,
+            top: size.height * 0.08,
+            child: Image.asset(
+              "assets/icons/otp.png",
+              height: size.width / 1.8,
+              width: size.width / 1.8,
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.4,
             child: Text(
               "Verify OTP!",
               style: GoogleFonts.blackHanSans(
                 fontStyle: FontStyle.normal,
-                color: textWhite,
+                color: textWhite.withOpacity(0.5),
                 fontSize: 35,
               ),
             ),
           ),
           Positioned(
-            top: size.height * 0.65,
+            top: size.height * 0.48,
             child: Row(
               children: [
                 OtpField(
@@ -79,38 +100,46 @@ class OtpBody extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: size.height * 0.78,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Login();
-                    },
-                  ),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35),
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 60,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    color: buttonBg,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Text(
-                    "Verify",
-                    style: GoogleFonts.merriweatherSans(
-                        fontStyle: FontStyle.normal,
-                        color: textWhite,
-                        fontSize: 20,
-                        letterSpacing: 1.6),
+            top: size.height * 0.7,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Didn't get the OTP?",
+                  style: GoogleFonts.blackHanSans(
+                    fontStyle: FontStyle.normal,
+                    color: textWhite.withOpacity(0.6),
+                    fontSize: 16,
                   ),
                 ),
-              ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return Login();
+                        },
+                      ),
+                    );
+                  },
+                  child: Text(
+                    " Send Again",
+                    style: GoogleFonts.blackHanSans(
+                      fontStyle: FontStyle.normal,
+                      color: textWhite,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.84,
+            child: ButtonPrimary(
+              size: size,
+              text: "Verify",
             ),
           )
         ],

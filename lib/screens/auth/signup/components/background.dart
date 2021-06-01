@@ -4,69 +4,85 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SignupBackground extends StatelessWidget {
   final Widget child;
+  final Widget child2;
+  final AnimationController controller;
+  final Animation<double> opacity;
   const SignupBackground({
     Key? key,
     required this.child,
+    required this.child2,
+    required this.opacity,
+    required this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      color: primary,
       height: size.height,
-      width: double.infinity,
+      width: size.width,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          stops: [0.0, 1.0],
+          begin: FractionalOffset.topCenter,
+          end: FractionalOffset.bottomCenter,
+          tileMode: TileMode.repeated,
+          colors: [bgLight, bglDark], // red to yellow
+          // repeats the gradient over the canvas
+        ),
+      ),
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
           Positioned(
-            top: 0,
-            child: Container(
-              height: size.height * 0.4,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: size.height * 0.035,
-                  ),
-                  Hero(
-                    tag: 'image-logo',
-                    child: Image.asset(
-                      'assets/icons/logo.png',
-                      height: size.height * 0.25,
-                      width: size.height * 0.25,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: Text(
-                      "Chatsy",
-                      style: GoogleFonts.blackHanSans(
-                        fontStyle: FontStyle.normal,
-                        color: textWhite,
-                        fontSize: size.height * 0.07,
+            top: size.height * 0.05,
+            child: AnimatedBuilder(
+              animation: controller,
+              builder: (context, child) {
+                return Opacity(
+                  opacity: opacity.value,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(right: size.width * 0.83),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: textWhite,
+                            size: 20,
+                          ),
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
+                      Hero(
+                        tag: 'tag-image-image',
+                        child: Image.asset(
+                          "assets/icons/logo.png",
+                          height: 80,
+                          width: 80,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Text(
+                          "SIGN UP NOW",
+                          style: GoogleFonts.blackHanSans(
+                            fontStyle: FontStyle.normal,
+                            color: textWhite.withOpacity(0.5),
+                            fontSize: 28,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
-          Positioned(
-            top: size.height * 0.4,
-            child: Container(
-              height: size.height * 0.6,
-              width: size.width,
-              decoration: BoxDecoration(
-                color: bgWhite,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                ),
-              ),
-            ),
-          ),
-          child
+          Positioned(top: size.height * 0.3, child: child),
+          Positioned(top: size.height * 0.82, child: child2)
         ],
       ),
     );

@@ -1,120 +1,124 @@
-import 'package:chatsy/constants/constants.dart';
-import 'package:chatsy/screens/auth/forgot_password/componnets/background.dart';
-import 'package:chatsy/screens/auth/otp/otp.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:chatsy/components/button_primary.dart';
+import 'package:chatsy/components/inputfield.dart';
 
-class ForgetBody extends StatelessWidget {
+import 'package:chatsy/screens/auth/forgot_password/componnets/background.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+
+class ForgetBody extends StatefulWidget {
+  @override
+  _ForgetBodyState createState() => _ForgetBodyState();
+}
+
+class _ForgetBodyState extends State<ForgetBody>
+    with SingleTickerProviderStateMixin {
+  KeyboardVisibilityController keyboardVisibilityController =
+      KeyboardVisibilityController();
+
+  late AnimationController _controller = AnimationController(
+    duration: const Duration(milliseconds: 1000),
+    vsync: this,
+  );
+
+  Future _startAnimation() async {
+    try {
+      await _controller.forward().orCancel;
+    } on TickerCanceled {
+      print('Animation Failed');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    keyboardVisibilityController.onChange.listen((bool visible) {
+      if (visible == true) {
+        _startAnimation();
+      } else {
+        _controller.reverse();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return ForgetBackground(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: size.height * 0.48,
-            ),
-            TextfieldForget(
-              size: size,
-              icon: Icons.phone_android_outlined,
-              hintText: "Registered Phone",
-            ),
-            TextfieldForget(
-              size: size,
-              icon: Icons.lock_outlined,
-              hintText: "New Password",
-            ),
-            TextfieldForget(
-              size: size,
-              icon: Icons.lock_open_outlined,
-              hintText: "Confirm Password",
-            ),
-            GestureDetector(
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) {
-                //       return Otp();
-                //     },
-                //   ),
-                // );
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35),
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 60,
-                  width: 220,
-                  decoration: BoxDecoration(
-                    color: buttonBg,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Text(
-                    "Verify OTP",
-                    style: GoogleFonts.merriweatherSans(
-                        fontStyle: FontStyle.normal,
-                        color: textWhite,
-                        fontSize: 20,
-                        letterSpacing: 1.6),
-                  ),
-                ),
-              ),
-            ),
-          ],
+    late Animation<double> translateY = Tween<double>(
+      begin: 0,
+      end: -size.width,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Interval(
+          0.0,
+          1,
+          curve: Curves.easeOut,
         ),
       ),
     );
-  }
-}
-
-class TextfieldForget extends StatelessWidget {
-  const TextfieldForget(
-      {Key? key,
-      required this.size,
-      required this.icon,
-      required this.hintText})
-      : super(key: key);
-
-  final Size size;
-  final String hintText;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: size.width > 500 ? 300 : size.width - 100,
-        height: size.height > 800 ? 60 : 60,
-        child: TextField(
-          decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
-              hintStyle: TextStyle(
-                fontSize: 18.0,
-                color: placeholderText,
-                letterSpacing: 1.6,
-              ),
-              prefixIcon: Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Icon(
-                  icon,
-                  size: 22,
-                  color: iconColor,
-                ),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: primaryLight, width: 2.0),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              hintText: hintText),
-          textAlign: TextAlign.center,
+    late Animation<double> translateYBody = Tween<double>(
+      begin: 0,
+      end: -size.height * 0.35,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Interval(
+          0.0,
+          1,
+          curve: Curves.ease,
         ),
+      ),
+    );
+    return ForgetBackground(
+      controller: _controller,
+      translateY: translateY,
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Transform.translate(
+            offset: Offset(0, translateYBody.value),
+            child: Column(
+              children: [
+                InputField(
+                  icon: Icons.phone_android_outlined,
+                  hintText: "Registered Phone",
+                ),
+                InputField(
+                  icon: Icons.lock_outlined,
+                  hintText: "New Password",
+                ),
+                InputField(
+                  icon: Icons.lock_open_outlined,
+                  hintText: "Confirm Password",
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+      child2: Column(
+        children: [
+          GestureDetector(
+            onTap: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) {
+              //       return Otp();
+              //     },
+              //   ),
+              // );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: ButtonPrimary(
+                size: size,
+                text: "VERIFY OTP",
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

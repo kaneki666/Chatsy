@@ -1,5 +1,7 @@
+import 'package:chatsy/components/button_primary.dart';
 import 'package:chatsy/constants/constants.dart';
 import 'package:chatsy/screens/auth/Login/login.dart';
+import 'package:chatsy/screens/auth/signup/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,26 +12,122 @@ class Splashscreen extends StatefulWidget {
 
 class _SplashscreenState extends State<Splashscreen>
     with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 2),
+  late AnimationController _controller = AnimationController(
+    duration: const Duration(milliseconds: 3500),
     vsync: this,
-  )..forward();
-
-  late final Animation<double> _animation = CurvedAnimation(
-    parent: _controller,
-    curve: Curves.fastOutSlowIn,
   );
 
-  late final Animation<double> opacity = Tween(begin: 0.0, end: 1.0).animate(
+  late Animation<double> _animation = Tween<double>(
+    begin: 0.0,
+    end: 1,
+  ).animate(
     CurvedAnimation(
       parent: _controller,
       curve: Interval(
         0.0,
-        0.100,
-        curve: Curves.ease,
+        0.2,
+        curve: Curves.easeIn,
       ),
     ),
   );
+
+  late Animation<double> opacity = Tween<double>(
+    begin: 0.0,
+    end: 1.0,
+  ).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: Interval(
+        0.2,
+        0.34,
+        curve: Curves.decelerate,
+      ),
+    ),
+  );
+
+  late Animation<double> titlePosition = Tween<double>(
+    begin: 210.0,
+    end: 190.0,
+  ).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: Interval(
+        0.30,
+        0.48,
+        curve: Curves.fastOutSlowIn,
+      ),
+    ),
+  );
+
+  late Animation<double> opacitySubtitle = Tween<double>(
+    begin: 0.0,
+    end: 1.0,
+  ).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: Interval(
+        0.48,
+        0.62,
+        curve: Curves.easeIn,
+      ),
+    ),
+  );
+
+  late Animation<double> subtitlePosition = Tween<double>(
+    begin: 280.0,
+    end: 260.0,
+  ).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: Interval(
+        0.58,
+        0.72,
+        curve: Curves.easeInCubic,
+      ),
+    ),
+  );
+
+  late Animation<double> scaleButton = Tween<double>(
+    begin: 0,
+    end: 1,
+  ).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: Interval(
+        0.72,
+        0.88,
+        curve: Curves.bounceIn,
+      ),
+    ),
+  );
+
+  late Animation<double> opacityBottom = Tween<double>(
+    begin: 0.0,
+    end: 1.0,
+  ).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: Interval(
+        0.88,
+        1,
+        curve: Curves.easeIn,
+      ),
+    ),
+  );
+
+  Future _startAnimation() async {
+    try {
+      await _controller.forward().orCancel;
+    } on TickerCanceled {
+      print('Animation Failed');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _startAnimation();
+  }
 
   @override
   void dispose() {
@@ -55,86 +153,111 @@ class _SplashscreenState extends State<Splashscreen>
             // repeats the gradient over the canvas
           ),
         ),
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            Positioned(
-              top: size.height * 0.1,
-              child: ScaleTransition(
-                scale: _animation,
-                child: Image.asset(
-                  "assets/icons/logo.png",
-                  height: 200,
-                  width: 200,
-                ),
-              ),
-            ),
-            Positioned(
-              top: size.height * 0.4,
-              child: Text(
-                "Hi, I'm Chatsy",
-                style: GoogleFonts.blackHanSans(
-                  color: textWhite,
-                  fontSize: 35,
-                ),
-              ),
-            ),
-            Positioned(
-              top: size.height * 0.5,
-              child: Text(
-                "Your new chat App",
-                style: GoogleFonts.blackHanSans(
-                  color: textWhite.withOpacity(0.6),
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            Positioned(
-              top: size.height * 0.8,
-              child: Container(
-                width: size.width * 0.5,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: textWhite,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Center(
-                  child: Text(
-                    "SIGN UP",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.blackHanSans(
-                      color: bglDark,
-                      fontSize: 16,
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            return Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                Positioned(
+                  top: 40,
+                  child: ScaleTransition(
+                    scale: _animation,
+                    child: Hero(
+                      tag: 'tag-image-image',
+                      child: Image.asset(
+                        "assets/icons/logo.png",
+                        height: 100,
+                        width: 100,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-            Positioned(
-              top: size.height * 0.9,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return Login();
+                Positioned(
+                  top: titlePosition.value,
+                  child: Opacity(
+                    opacity: opacity.value,
+                    child: Text(
+                      "Hi, I'm Chatsy",
+                      style: GoogleFonts.blackHanSans(
+                        color: textWhite,
+                        fontSize: 35,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: subtitlePosition.value,
+                  child: Opacity(
+                    opacity: opacitySubtitle.value,
+                    child: Text(
+                      "Your New Chat App",
+                      style: GoogleFonts.blackHanSans(
+                        color: textWhite.withOpacity(0.6),
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: size.height * 0.8,
+                  child: ScaleTransition(
+                    scale: scaleButton,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Signup()));
                       },
+                      child: ButtonPrimary(
+                        size: size,
+                        text: "SIGN UP",
+                      ),
                     ),
-                  );
-                },
-                child: Text(
-                  "I ALREADY HAVE AN ACCOUNNT",
-                  style: GoogleFonts.blackHanSans(
-                    color: textWhite.withOpacity(0.6),
-                    fontSize: 20,
                   ),
                 ),
-              ),
-            ),
-          ],
+                Positioned(
+                  top: size.height * 0.9,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(_createRoute());
+                    },
+                    child: Opacity(
+                      opacity: opacityBottom.value,
+                      child: Text(
+                        "I ALREADY HAVE AN ACCOUNNT",
+                        style: GoogleFonts.blackHanSans(
+                          color: textWhite.withOpacity(0.6),
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    transitionDuration: Duration(milliseconds: 500),
+    pageBuilder: (context, animation, secondaryAnimation) => Login(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(1.0, 0.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(
+        curve: curve,
+      ));
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
