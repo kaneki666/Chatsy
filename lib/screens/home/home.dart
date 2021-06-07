@@ -200,14 +200,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           Radius.circular(20),
                         ),
                         gradient: LinearGradient(
-                          stops: [0.0, 0.6, 0.9],
+                          stops: [0.0, 0.6, 1],
                           begin: FractionalOffset.centerLeft,
                           end: FractionalOffset.bottomRight,
                           tileMode: TileMode.clamp,
                           colors: [
-                            modalTop,
-                            modalMid,
-                            modalBottom
+                            gradient3,
+                            gradient2,
+                            gradient1
                           ], // red to yellow
                           // repeats the gradient over the canvas
                         ),
@@ -251,7 +251,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 begin: FractionalOffset.centerLeft,
                 end: FractionalOffset.bottomRight,
                 tileMode: TileMode.clamp,
-                colors: [modalTop, modalMid, modalBottom], // red to yellow
+                colors: [
+                  gradient3,
+                  gradient2,
+                  gradient1,
+                ], // red to yellow
                 // repeats the gradient over the canvas
               ),
             ),

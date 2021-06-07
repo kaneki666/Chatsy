@@ -16,11 +16,11 @@ class ActivityHome extends StatelessWidget {
       width: size.width * 0.7,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          stops: [0.0, 1.0],
+          stops: [0.0, 0.5, 1.0],
           begin: FractionalOffset.centerLeft,
           end: FractionalOffset.centerRight,
           tileMode: TileMode.repeated,
-          colors: [darkBoxLeft, lightBoxLeft], // red to yellow
+          colors: [gradient1, gradient2, gradient3], // red to yellow
           // repeats the gradient over the canvas
         ),
         borderRadius: BorderRadius.circular(20),

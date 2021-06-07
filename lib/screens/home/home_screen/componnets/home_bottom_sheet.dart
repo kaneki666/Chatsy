@@ -19,21 +19,21 @@ Positioned homeBotomSheet(BuildContext context, Size size) {
     child: GestureDetector(
       onTap: () => showMaterialModalBottomSheet(
         context: context,
-        backgroundColor: textDark,
-        barrierColor: textDark,
+        backgroundColor: inputBg,
+        barrierColor: inputBg,
         builder: (BuildContext context) {
           return Container(
-            height: size.height - 20,
+            height: size.height * 0.95,
             width: size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               gradient: LinearGradient(
                 stops: [0.0, 0.6, 0.9],
-                begin: FractionalOffset.topLeft,
-                end: FractionalOffset.bottomRight,
+                begin: FractionalOffset.topCenter,
+                end: FractionalOffset.bottomCenter,
                 tileMode: TileMode.clamp,
-                colors: [modalTop, modalMid, modalBottom], // red to yellow
+                colors: [gradient3, gradient1, gradient2], // red to yellow
                 // repeats the gradient over the canvas
               ),
             ),
