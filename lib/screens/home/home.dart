@@ -141,7 +141,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
     double tabPadding = 10;
     double tabItemWidth = (size.width - 20) / 5 - tabPadding;
-    print("$tabItemWidth, $tabPadding");
+
     if (upDirection == false) {
       setState(() {
         height1 = 1;

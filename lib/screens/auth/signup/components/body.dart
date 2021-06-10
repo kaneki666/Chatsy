@@ -5,7 +5,6 @@ import 'package:chatsy/screens/auth/Login/login.dart';
 import 'package:chatsy/screens/auth/otp/otp.dart';
 import 'package:chatsy/screens/auth/signup/components/background.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql/client.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
@@ -167,7 +166,7 @@ class _SignupBodyState extends State<SignupBody>
             children: [
               Text(
                 "Already have an account?",
-                style: GoogleFonts.blackHanSans(
+                style: TextStyle(
                   fontStyle: FontStyle.normal,
                   color: textWhite.withOpacity(0.6),
                   fontSize: 16,
@@ -186,7 +185,7 @@ class _SignupBodyState extends State<SignupBody>
                 },
                 child: Text(
                   " Login",
-                  style: GoogleFonts.blackHanSans(
+                  style: TextStyle(
                     fontStyle: FontStyle.normal,
                     color: textWhite,
                     fontSize: 16,

@@ -3,7 +3,6 @@ import 'package:chatsy/constants/constants.dart';
 import 'package:chatsy/screens/auth/Login/login.dart';
 import 'package:chatsy/screens/auth/otp/components/otp_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class OtpBody extends StatelessWidget {
   const OtpBody({
@@ -42,7 +41,7 @@ class OtpBody extends StatelessWidget {
             top: size.height * 0.06,
             child: Text(
               "Code is sent to 01764225218",
-              style: GoogleFonts.blackHanSans(
+              style: TextStyle(
                 fontStyle: FontStyle.normal,
                 color: textWhite.withOpacity(0.5),
                 fontSize: 16,
@@ -61,7 +60,7 @@ class OtpBody extends StatelessWidget {
             top: size.height * 0.4,
             child: Text(
               "Verify OTP!",
-              style: GoogleFonts.blackHanSans(
+              style: TextStyle(
                 fontStyle: FontStyle.normal,
                 color: textWhite.withOpacity(0.5),
                 fontSize: 35,
@@ -106,7 +105,7 @@ class OtpBody extends StatelessWidget {
               children: [
                 Text(
                   "Didn't get the OTP?",
-                  style: GoogleFonts.blackHanSans(
+                  style: TextStyle(
                     fontStyle: FontStyle.normal,
                     color: textWhite.withOpacity(0.6),
                     fontSize: 16,
@@ -125,7 +124,7 @@ class OtpBody extends StatelessWidget {
                   },
                   child: Text(
                     " Send Again",
-                    style: GoogleFonts.blackHanSans(
+                    style: TextStyle(
                       fontStyle: FontStyle.normal,
                       color: textWhite,
                       fontSize: 16,

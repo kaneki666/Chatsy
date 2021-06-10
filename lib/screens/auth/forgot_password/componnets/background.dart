@@ -1,6 +1,5 @@
 import 'package:chatsy/constants/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ForgetBackground extends StatelessWidget {
   final Widget child;
@@ -72,7 +71,7 @@ class ForgetBackground extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 5.0),
                           child: Text(
                             "Set up new password!",
-                            style: GoogleFonts.blackHanSans(
+                            style: TextStyle(
                               fontStyle: FontStyle.normal,
                               color: textWhite.withOpacity(0.5),
                               fontSize: 30,

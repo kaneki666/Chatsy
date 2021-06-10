@@ -14,7 +14,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     String image =
-        'https://images.unsplash.com/photo-1558409057-bbe679023136?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=100';
+        'https://bangabandhuolympiad.com/8/English%201st%20Paper.jpg';
     return Container(
       // height: size.height,
       // width: double.infinity,
@@ -100,9 +100,7 @@ class StatusItem extends StatelessWidget {
                       tag: "status-image",
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(6),
-                        child: FadeInImage.assetNetwork(
-                            placeholder: "assets/icons/loading.gif",
-                            image: image,
+                        child: Image.network(image,
                             height: 140,
                             width: size.width * 0.9,
                             fit: BoxFit.fill),

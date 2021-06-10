@@ -1,7 +1,5 @@
-import 'package:chatsy/constants/constants.dart';
 import 'package:chatsy/screens/splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 
@@ -26,7 +24,6 @@ class _MyAppState extends State<MyApp> {
       });
     } catch (e) {
       setState(() {
-        print(e);
         _error = true;
       });
     }
@@ -41,25 +38,33 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // if (_error) {
-    //   return Directionality(
-    //     child: Text("$_error"),
-    //     textDirection: TextDirection.rtl,
-    //   );
-    // }
+    if (_error) {
+      return Error();
+    }
 
     return MaterialApp(
         title: 'Chatsy',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.transparent,
-          textTheme: GoogleFonts.latoTextTheme().apply(displayColor: textWhite),
-          visualDensity: VisualDensity.adaptivePlatformDensity,
           appBarTheme: AppBarTheme(
               color: Colors.transparent,
               elevation: 0,
               brightness: Brightness.light),
         ),
-        home: _initialized == true ? Splashscreen() : Splashscreen());
+        home: _initialized == true ? Splashscreen() : Error());
+  }
+}
+
+class Error extends StatelessWidget {
+  const Error({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      color: Colors.amber,
+      child: Text("Error"),
+    );
   }
 }

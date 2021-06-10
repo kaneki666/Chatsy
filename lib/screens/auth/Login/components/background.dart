@@ -1,6 +1,5 @@
 import 'package:chatsy/constants/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginBackground extends StatelessWidget {
   final Widget child;
@@ -69,7 +68,7 @@ class LoginBackground extends StatelessWidget {
                           padding: EdgeInsets.only(top: size.height * 0.03),
                           child: Text(
                             "Welcome Back!",
-                            style: GoogleFonts.blackHanSans(
+                            style: TextStyle(
                               fontStyle: FontStyle.normal,
                               color: textWhite.withOpacity(0.5),
                               fontSize: 30,

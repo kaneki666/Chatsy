@@ -1,6 +1,5 @@
 import 'package:chatsy/constants/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SignupBackground extends StatelessWidget {
   final Widget child;
@@ -68,7 +67,7 @@ class SignupBackground extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Text(
                           "SIGN UP NOW",
-                          style: GoogleFonts.blackHanSans(
+                          style: TextStyle(
                             fontStyle: FontStyle.normal,
                             color: textWhite.withOpacity(0.5),
                             fontSize: 28,

@@ -3,7 +3,6 @@ import 'package:chatsy/constants/constants.dart';
 import 'package:chatsy/screens/auth/Login/login.dart';
 import 'package:chatsy/screens/auth/signup/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Splashscreen extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class Splashscreen extends StatefulWidget {
 class _SplashscreenState extends State<Splashscreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller = AnimationController(
-    duration: const Duration(milliseconds: 3500),
+    duration: const Duration(milliseconds: 4500),
     vsync: this,
   );
 
@@ -25,8 +24,8 @@ class _SplashscreenState extends State<Splashscreen>
       parent: _controller,
       curve: Interval(
         0.0,
-        0.2,
-        curve: Curves.easeIn,
+        0.14285714285,
+        curve: Curves.ease,
       ),
     ),
   );
@@ -38,9 +37,9 @@ class _SplashscreenState extends State<Splashscreen>
     CurvedAnimation(
       parent: _controller,
       curve: Interval(
-        0.2,
-        0.34,
-        curve: Curves.decelerate,
+        0.14285714286,
+        0.2857142857,
+        curve: Curves.ease,
       ),
     ),
   );
@@ -52,9 +51,9 @@ class _SplashscreenState extends State<Splashscreen>
     CurvedAnimation(
       parent: _controller,
       curve: Interval(
-        0.30,
-        0.48,
-        curve: Curves.fastOutSlowIn,
+        0.2857142858,
+        0.42857142855,
+        curve: Curves.ease,
       ),
     ),
   );
@@ -66,9 +65,9 @@ class _SplashscreenState extends State<Splashscreen>
     CurvedAnimation(
       parent: _controller,
       curve: Interval(
-        0.48,
-        0.62,
-        curve: Curves.easeIn,
+        0.42857142856,
+        0.5714285714,
+        curve: Curves.ease,
       ),
     ),
   );
@@ -80,9 +79,9 @@ class _SplashscreenState extends State<Splashscreen>
     CurvedAnimation(
       parent: _controller,
       curve: Interval(
-        0.58,
-        0.72,
-        curve: Curves.easeInCubic,
+        0.5714285715,
+        0.71428571425,
+        curve: Curves.ease,
       ),
     ),
   );
@@ -94,9 +93,9 @@ class _SplashscreenState extends State<Splashscreen>
     CurvedAnimation(
       parent: _controller,
       curve: Interval(
-        0.72,
-        0.88,
-        curve: Curves.bounceIn,
+        0.71428571426,
+        0.8571428571,
+        curve: Curves.ease,
       ),
     ),
   );
@@ -108,9 +107,9 @@ class _SplashscreenState extends State<Splashscreen>
     CurvedAnimation(
       parent: _controller,
       curve: Interval(
-        0.88,
+        0.8571428572,
         1,
-        curve: Curves.easeIn,
+        curve: Curves.ease,
       ),
     ),
   );
@@ -125,14 +124,14 @@ class _SplashscreenState extends State<Splashscreen>
 
   @override
   void initState() {
-    super.initState();
     _startAnimation();
+    super.initState();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
+    _controller.dispose();
   }
 
   @override
@@ -153,98 +152,142 @@ class _SplashscreenState extends State<Splashscreen>
             // repeats the gradient over the canvas
           ),
         ),
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) {
-            return Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                Positioned(
-                  top: 40,
-                  child: ScaleTransition(
-                    scale: _animation,
-                    child: Hero(
-                      tag: 'tag-image-image',
-                      child: Image.asset(
-                        "assets/icons/logo.png",
-                        height: 100,
-                        width: 100,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: titlePosition.value,
-                  child: Opacity(
-                    opacity: opacity.value,
-                    child: Text(
-                      "Hi, I'm Chatsy",
-                      style: GoogleFonts.blackHanSans(
-                        color: textWhite,
-                        fontSize: 35,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: subtitlePosition.value,
-                  child: Opacity(
-                    opacity: opacitySubtitle.value,
-                    child: Text(
-                      "Your New Chat App",
-                      style: GoogleFonts.blackHanSans(
-                        color: textWhite.withOpacity(0.6),
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: size.height * 0.8,
-                  child: ScaleTransition(
-                    scale: scaleButton,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Signup()));
-                      },
-                      child: ButtonPrimary(
-                        size: size,
-                        text: "SIGN UP",
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: size.height * 0.92,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(_createRoute());
-                    },
-                    child: Opacity(
-                      opacity: opacityBottom.value,
-                      child: Text(
-                        "I ALREADY HAVE AN ACCOUNNT",
-                        style: GoogleFonts.blackHanSans(
-                          color: textWhite.withOpacity(0.6),
-                          fontSize: size.width * 0.05,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
+        child: AnimatedWidgetSplash(
+            controller: _controller,
+            animation: _animation,
+            titlePosition: titlePosition,
+            opacity: opacity,
+            subtitlePosition: subtitlePosition,
+            opacitySubtitle: opacitySubtitle,
+            size: size,
+            scaleButton: scaleButton,
+            opacityBottom: opacityBottom),
       ),
+    );
+  }
+}
+
+class AnimatedWidgetSplash extends StatelessWidget {
+  const AnimatedWidgetSplash({
+    Key? key,
+    required AnimationController controller,
+    required Animation<double> animation,
+    required this.titlePosition,
+    required this.opacity,
+    required this.subtitlePosition,
+    required this.opacitySubtitle,
+    required this.size,
+    required this.scaleButton,
+    required this.opacityBottom,
+  })  : _controller = controller,
+        _animation = animation,
+        super(key: key);
+
+  final AnimationController _controller;
+  final Animation<double> _animation;
+  final Animation<double> titlePosition;
+  final Animation<double> opacity;
+  final Animation<double> subtitlePosition;
+  final Animation<double> opacitySubtitle;
+  final Size size;
+  final Animation<double> scaleButton;
+  final Animation<double> opacityBottom;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Positioned(
+              top: 40,
+              child: Hero(
+                tag: 'tag-image-image',
+                child: ScaleTransition(
+                  scale: _animation,
+                  child: Image.asset(
+                    "assets/icons/logo.png",
+                    height: 100,
+                    width: 100,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: titlePosition.value,
+              child: AnimatedOpacity(
+                duration: Duration(microseconds: 100),
+                opacity: opacity.value,
+                child: Text(
+                  "Hi, I'm Chatsy",
+                  style: TextStyle(
+                    color: textWhite,
+                    fontSize: 35,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: subtitlePosition.value,
+              child: AnimatedOpacity(
+                duration: Duration(microseconds: 100),
+                opacity: opacitySubtitle.value,
+                child: Text(
+                  "Your New Chat App",
+                  style: TextStyle(
+                    color: textWhite.withOpacity(0.6),
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: size.height * 0.8,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Signup()));
+                },
+                child: ScaleTransition(
+                  scale: scaleButton,
+                  child: ButtonPrimary(
+                    size: size,
+                    text: "SIGN UP",
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: size.height * 0.92,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(_createRoute());
+                },
+                child: AnimatedOpacity(
+                  duration: Duration(microseconds: 100),
+                  opacity: opacityBottom.value,
+                  child: Text(
+                    "I ALREADY HAVE AN ACCOUNNT",
+                    style: TextStyle(
+                      color: textWhite.withOpacity(0.6),
+                      fontSize: size.width * 0.05,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
 
 Route _createRoute() {
   return PageRouteBuilder(
-    transitionDuration: Duration(milliseconds: 500),
+    transitionDuration: Duration(milliseconds: 1500),
     pageBuilder: (context, animation, secondaryAnimation) => Login(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = Offset(1.0, 0.0);
